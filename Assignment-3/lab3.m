@@ -1,0 +1,18 @@
+% x = datalab3dataat175(1:180,2);
+clc;
+clear all;
+dataat100 = csvread('C:\Accost\Mich Tech\Course work\Dynamic Systems and measurements\Lab Assignments\Assignment-3\lab_3_data_at_1.csv');
+x = dataat100(1:256,2);
+N = 256;
+hann_w=hann(N);
+flattop_w=flattopwin(N);
+rect_w=rectwin(N);
+x = x.*rect_w;
+% NFFT = 2^nextpow2(N);
+NFFT = N;
+FFT = fft(x,N)/N;
+FFT_f = 10240/2*linspace(0,1,N/2);
+FFT_a = 2*abs(FFT(1:length(FFT)/2));
+stem(FFT_f,FFT_a);
+% plot(dataat100(1:208,1),dataat100(1:208,2));
+% plot(FFT_f,log(2*abs(FFT(1:length(FFT)/2))));
